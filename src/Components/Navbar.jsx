@@ -84,7 +84,11 @@ const Navbar = () => {
                   <CgProfile style={{ color: "red" }} />
                 </button>
               </a>
-              <a className='call' href='tel:+2348024068995'>
+              <a
+                className='call'
+                href='https://onosereme.netlify.app/contact'
+                target='_blank'
+              >
                 <p>Developer : </p>
                 <p className='num'>+2348024068995</p>
               </a>
