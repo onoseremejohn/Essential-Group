@@ -22,6 +22,9 @@ const AppProvider = ({ children }) => {
   const closeNav = () => {
     dispatch({ type: "CLOSE_NAV" });
   };
+  const openNav = () => {
+    dispatch({ type: "OPEN_NAV" });
+  };
 
   useEffect(() => {
     let interval = setTimeout(() => dispatch({ type: "CHANGE" }), 7000);
@@ -34,7 +37,7 @@ const AppProvider = ({ children }) => {
     }
   }, [state.index]);
   return (
-    <AppContext.Provider value={{ ...state, toggleNav, closeNav }}>
+    <AppContext.Provider value={{ ...state, toggleNav, closeNav, openNav }}>
       {children}
     </AppContext.Provider>
   );

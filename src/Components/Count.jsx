@@ -1,27 +1,34 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-const CountUp = ({ target, intersect }) => {
+const CountUp = ({ target, time }) => {
   const [count, setCount] = useState(0);
-
+  const [intersecting, setIntersecting] = useState(false);
+  const countRef = useRef(null);
   useEffect(() => {
+    if (!intersecting) return;
     const intervalId = setInterval(() => {
       if (count >= target) {
         clearInterval(intervalId);
         return;
       }
       setCount((c) => c + 1);
-    }, 5);
+    }, time || 5);
     return () => clearInterval(intervalId);
-  }, [count, target]);
+  }, [count, intersecting, target]);
 
   useEffect(() => {
-    if (intersect) {
-      setCount(0);
-    } else {
-      setCount(target);
-    }
-  }, [intersect, target]);
-  return <span>{count}</span>;
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setIntersecting(true);
+        setCount((c) => (c === target ? c : 0));
+      } else {
+        setIntersecting(false);
+      }
+    });
+    observer.observe(countRef.current);
+    return () => observer.disconnect();
+  }, [countRef, target]);
+  return <span ref={countRef}>{count}</span>;
 };
 
 export default CountUp;

@@ -1,4 +1,3 @@
-import { useEffect, useState, useRef } from "react";
 import styled from "styled-components";
 import CountUp from "./Count";
 const Stats = () => {
@@ -8,45 +7,30 @@ const Stats = () => {
     projects: 30,
     worldwide: 90,
   };
-  const obs = useRef(null);
-  const [intersect, setIntersect] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        setIntersect(true);
-      } else {
-        setIntersect(false);
-      }
-    });
-    observer.observe(obs.current);
-    return () => observer.disconnect();
-  }, [obs]);
+
   return (
     <Wrapper className='section section-center'>
-      <div ref={obs}>
+      <div>
         <p className='head'>
-          {<CountUp target={target.users} intersect={intersect} />} <sub>%</sub>
+          {<CountUp target={target.users} />} <sub>%</sub>
         </p>
         <p className='foot'>USERS RECOMMENDED</p>
       </div>
       <div>
         <p className='head'>
-          {<CountUp target={target.clients} intersect={intersect} />}{" "}
-          <sub>+</sub>
+          {<CountUp target={target.clients} />} <sub>+</sub>
         </p>
         <p className='foot'>SATISFIRD CLIENTS</p>
       </div>
       <div>
         <p className='head'>
-          {<CountUp target={target.projects} intersect={intersect} />}{" "}
-          <sub></sub>
+          {<CountUp time={30} target={target.projects} />} <sub></sub>
         </p>
         <p className='foot'>USERS RECOMMENDED</p>
       </div>
       <div>
         <p className='head'>
-          {<CountUp target={target.worldwide} intersect={intersect} />}{" "}
-          <sub>+</sub>
+          {<CountUp target={target.worldwide} />} <sub>+</sub>
         </p>
         <p className='foot'>WORLDWIDE USERS</p>
       </div>

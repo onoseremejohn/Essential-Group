@@ -5,9 +5,12 @@ import { VscMenu, VscClose } from "react-icons/vsc";
 import { useGlobalContext } from "../AppContext";
 import { useEffect, useRef } from "react";
 const Navbar = () => {
-  const { toggleNav, isNavOpen } = useGlobalContext();
+  const { toggleNav, isNavOpen, closeNav, openNav } = useGlobalContext();
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
+  const navbarRef = useRef(null);
+  const toggleRef = useRef(null);
+
   useEffect(() => {
     const linksHeight = linksRef.current.getBoundingClientRect().height;
     if (isNavOpen) {
@@ -16,12 +19,40 @@ const Navbar = () => {
       linksContainerRef.current.style.height = "0";
     }
   }, [isNavOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        toggleRef.current.contains(event.target) ||
+        toggleRef.current.childNodes[0].contains(event.target)
+      ) {
+        toggleNav();
+        return;
+      }
+      if (isNavOpen && !navbarRef.current.contains(event.target)) {
+        closeNav();
+        return;
+      }
+    };
+    const handleScroll = () => {
+      if (isNavOpen) {
+        closeNav();
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isNavOpen]);
   return (
-    <Wrapper isNavOpen={isNavOpen}>
+    <Wrapper isNavOpen={isNavOpen} ref={navbarRef}>
       <div className='container'>
         <div className='nav-header'>
           <img src={logo} alt='logo' />
-          <button onClick={toggleNav} className='toggle'>
+          <button className='toggle' ref={toggleRef}>
             {isNavOpen ? <VscClose /> : <VscMenu />}
           </button>
         </div>
@@ -82,8 +113,10 @@ const Wrapper = styled.nav`
   li {
     font-weight: bold;
     font-size: 1.1rem;
-    &:hover {
-      color: red;
+    a {
+      &:hover {
+        color: red;
+      }
     }
   }
   .nav-header {

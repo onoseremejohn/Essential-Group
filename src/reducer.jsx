@@ -5,6 +5,9 @@ const reducer = (state, action) => {
   if (action.type === "CLOSE_NAV") {
     return { ...state, isNavOpen: false };
   }
+  if (action.type === "OPEN_NAV") {
+    return { ...state, isNavOpen: true };
+  }
   if (action.type === "CHANGE") {
     return { ...state, index: state.index + 1 };
   }
