@@ -38,7 +38,7 @@ const Wrapper = styled.section`
   .text-center {
     text-align: center;
     position: relative;
-    min-height: 330px;
+    min-height: 365px;
     overflow: hidden;
   }
   .text-center > article {
@@ -56,7 +56,6 @@ const Wrapper = styled.section`
   img {
     max-width: 80%;
     margin: 0 auto;
-    /* object-fit: cover; */
   }
   p {
     font-size: 1.1rem;
@@ -76,7 +75,7 @@ const Wrapper = styled.section`
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
-
+    align-items: center;
     img {
       min-width: 340px;
       width: 100%;
@@ -88,12 +87,6 @@ const Wrapper = styled.section`
       grid-column: 1/2;
       grid-row: 1/2;
       text-align: unset;
-      overflow: unset;
-    }
-    .text-center > article {
-      top: 50%;
-      height: unset;
-      max-height: 100%;
     }
     .text-center > article.active {
       transform: translate(0, -50%);
@@ -113,9 +106,9 @@ const Wrapper = styled.section`
       transform: translateY(-15px);
     }
   }
-  @media screen and (min-width: 1020px) {
+  @media screen and (min-width: 1170px) {
     p {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   }
 `;

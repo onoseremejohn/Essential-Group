@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import logo from "../assets/logo.png";
-import { FaPhone } from "react-icons/fa";
+import { CgProfile } from "react-icons/cg";
 import { VscMenu, VscClose } from "react-icons/vsc";
 import { useGlobalContext } from "../AppContext";
 import { useEffect, useRef } from "react";
@@ -79,14 +79,14 @@ const Navbar = () => {
               <a href='/contact'>CONTACT</a>
             </li>
             <div className='phone'>
-              <a href='tel:+2348159556666'>
+              <a href='https://onosereme.netlify.app/portfolio' target='_blank'>
                 <button>
-                  <FaPhone />
+                  <CgProfile style={{ color: "red" }} />
                 </button>
               </a>
-              <a className='call' href='tel:+2348159556666'>
-                <p>Call Now :</p>
-                <p className='num'>+2348159556666</p>
+              <a className='call' href='tel:+2348024068995'>
+                <p>Developer : </p>
+                <p className='num'>+2348024068995</p>
               </a>
             </div>
           </ul>
@@ -112,7 +112,6 @@ const Wrapper = styled.nav`
 
   li {
     font-weight: bold;
-    font-size: 1.1rem;
     a {
       &:hover {
         color: red;
@@ -155,7 +154,7 @@ const Wrapper = styled.nav`
     button {
       border: none;
       background: none;
-      font-size: 1rem;
+      font-size: 1.5rem;
     }
   }
 
@@ -212,7 +211,6 @@ const Wrapper = styled.nav`
     }
     .nav-header {
       padding: 0;
-      grid-column: 2/3;
     }
     .links-container {
       height: auto !important;
@@ -222,7 +220,7 @@ const Wrapper = styled.nav`
       margin-left: auto;
       display: flex;
       align-items: center;
-      grid-column: 3/4;
+
       ul {
         display: flex;
         align-items: center;
@@ -255,8 +253,7 @@ const Wrapper = styled.nav`
     }
   }
   @media screen and (min-width: 1170px) {
-    li,
-    .phone button {
+    li {
       font-size: 1.2rem;
     }
     .links-container {

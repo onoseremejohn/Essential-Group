@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useState,
-} from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import data from "./data";
 import reducer from "./reducer";
 
@@ -12,7 +6,7 @@ const AppContext = createContext();
 const AppProvider = ({ children }) => {
   const initialState = {
     isNavOpen: false,
-    index: 5,
+    index: 0,
     data,
   };
   const [state, dispatch] = useReducer(reducer, initialState);
