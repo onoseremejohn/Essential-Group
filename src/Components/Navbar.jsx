@@ -5,7 +5,7 @@ import { VscMenu, VscClose } from "react-icons/vsc";
 import { useGlobalContext } from "../AppContext";
 import { useEffect, useRef } from "react";
 const Navbar = () => {
-  const { toggleNav, isNavOpen, closeNav, openNav } = useGlobalContext();
+  const { toggleNav, isNavOpen, closeNav } = useGlobalContext();
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
   const navbarRef = useRef(null);
